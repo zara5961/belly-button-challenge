@@ -1,92 +1,82 @@
 
 # Belly Button Biodiversity Dashboard
+![Bellybutton](Images/bbb.jpg)
 
-This project creates an interactive dashboard to explore the Belly Button Biodiversity dataset. The dataset catalogs the bacteria found in the human belly button. Users can select test subjects from a dropdown menu and view dynamic visualizations of the top 10 bacterial species found in their navels, as well as additional metadata and a bubble chart representing bacterial distribution.
+This project is an interactive dashboard that explores the Belly Button Biodiversity dataset, which catalogs the microbes found in human navels. The dataset reveals that a small number of microbial species (operational taxonomic units, or OTUs) are found in more than 70% of individuals, while others are relatively rare.
 
-## Table of Contents
-- [Overview](#overview)
-- [Technologies Used](#technologies-used)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Data Source](#data-source)
-- [Deployment](#deployment)
-- [Acknowledgments](#acknowledgments)
-
-## Overview
-The dashboard allows users to:
+## Project Overview
+The Belly Button Biodiversity Dashboard allows users to:
 - Select a test subject ID from a dropdown menu.
-- View a horizontal bar chart displaying the top 10 bacterial species (OTUs) found in the test subject.
-- View a bubble chart that represents the relative abundance of bacteria.
-- Display metadata information such as gender, age, and ethnicity of the selected test subject.
-- Dynamically update the visualizations when a new test subject is selected.
+- View a bar chart that displays the top 10 bacterial species (OTUs) found in that individual.
+- View a bubble chart representing the entire microbial profile of the selected individual.
+- Display demographic metadata, such as ethnicity, age, and location for the selected subject.
 
-## Technologies Used
-- **HTML/CSS/Bootstrap**: For structuring and styling the dashboard.
-- **JavaScript (ES6)**: For interactivity and rendering the data.
-- **D3.js**: To fetch data and manipulate the DOM.
-- **Plotly.js**: For creating responsive charts and visualizations.
-- **GitHub Pages**: For deploying the dashboard.
+The dashboard is interactive and updates all plots dynamically when a new test subject is selected from the dropdown menu.
+
+![Bellybutton](Images/livedash.jpg)
 
 ## Features
-1. **Dynamic Dropdown Menu**: Users can select a test subject from a dropdown menu that updates the charts and metadata panel.
-2. **Top 10 OTUs Bar Chart**: Displays the top 10 bacterial species (OTUs) with sample values for each test subject.
-3. **Bubble Chart**: Each marker on the bubble chart represents an OTU, with marker size indicating the sample value and marker color representing different OTUs.
-4. **Metadata Panel**: Displays demographic information about the selected test subject.
-5. **Responsive Design**: The dashboard is mobile-friendly and adjusts to different screen sizes using Bootstrap.
+### Bar Chart
+- **Purpose:** Display the top 10 OTUs found in each test subject.
+- **Values:** The `sample_values` field is used to represent the OTU values.
+- **Labels:** The `otu_ids` field is used to label each bar.
+- **Hover Text:** The `otu_labels` field is displayed as hover text for each bar.
 
-## Getting Started
-### Prerequisites
-- Basic knowledge of web development (HTML, CSS, JavaScript).
-- Git installed on your local machine.
+### Bubble Chart
+- **Purpose:** Show the microbial profile for each test subject.
+- **X Values:** The `otu_ids` field represents the x-axis values.
+- **Y Values:** The `sample_values` field is used for the y-axis values.
+- **Marker Size:** The `sample_values` field is used to determine the size of each bubble.
+- **Marker Color:** The `otu_ids` field is used to determine the color of each bubble.
+- **Hover Text:** The `otu_labels` field is displayed when hovering over a bubble.
 
-### Steps
-1. **Clone the Repository**:
-   - Clone this repository to your local machine:
-     \`\`\`bash
-     git clone https://github.com/your-username/belly-button-challenge.git
-     \`\`\`
-2. **Open the Project**:
-   - Navigate to the project folder and open \`index.html\` in your browser.
+### Metadata Panel
+- Displays the demographic information of the selected test subject. This includes:
+  - **Ethnicity**
+  - **Gender**
+  - **Age**
+  - **Location**
+  - **Belly button type (Innie or Outie)**
+  - **Washing frequency (wfreq)**
 
-3. **View the Dashboard**:
-   - The dashboard will be loaded with an interactive dropdown menu to explore different test subjects.
-
-### Optional: Deploying the App to GitHub Pages
-1. After completing your changes, commit them to the repository:
-   \`\`\`bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   \`\`\`
-2. Deploy the project to GitHub Pages by enabling the GitHub Pages feature in your repository settings.
+### Dynamic Updates
+- When a new test subject is selected, both the bar chart and bubble chart update to show the relevant OTUs and microbial profile.
+- The demographic metadata panel also updates with information about the newly selected test subject.
 
 ## Project Structure
-\`\`\`
+```
 belly-button-challenge/
 │
 ├── static/
 │   └── js/
-│       └── app.js         # Contains D3.js and Plotly.js logic
-├── samples.json            # Contains the dataset of bacterial species and metadata
-├── index.html              # The main dashboard page
-└── README.md               # This file
-\`\`\`
-
-### app.js Breakdown
-- **buildMetadata()**: Fetches and displays metadata about the selected test subject.
-- **buildCharts()**: Builds the bar chart and bubble chart using data filtered by the selected test subject.
-- **init()**: Initializes the dashboard, populating the dropdown with sample names and loading the first subject's data.
-- **optionChanged()**: Event listener for the dropdown menu that updates the dashboard when a new test subject is selected.
+│       └── app.js         # Contains JavaScript logic for fetching data and rendering charts.
+├── samples.json            # The dataset containing microbial profiles and metadata for test subjects.
+├── index.html              # The main HTML file that structures the dashboard.
+└── README.md               # This file.
+```
 
 ## Data Source
-The dataset is hosted on a remote server and is loaded using D3.js. It contains information about different bacterial species (OTUs) and demographic metadata for multiple test subjects. The data file \`samples.json\` is provided for reference but does not need to be accessed locally.
+The dataset is hosted online and includes:
+1. **Names:** A list of test subject IDs.
+2. **Metadata:** Demographic data, such as age, gender, location, and washing frequency (`wfreq`) for each test subject.
+3. **Samples:** Microbial profile data for each test subject, including OTU IDs, OTU labels, and sample values.
 
-- **URL**: [Belly Button Biodiversity Data](https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json)
+The data is accessed using D3.js and loaded dynamically into the dashboard.
 
-## Deployment
-This dashboard is deployed on GitHub Pages and can be accessed [here](https://your-username.github.io/belly-button-challenge).
+![Bellybutton](Images/javad.jpg)
 
-## Acknowledgments
-- This project was completed as part of the Module 14 Challenge at the University of Toronto Boot Camp.
-- Special thanks to the instructors and TAs for their support.
+## Technologies Used
+- **HTML/CSS/Bootstrap**: For structuring and styling the dashboard.
+- **JavaScript (ES6)**: For interactivity and DOM manipulation.
+- **D3.js**: For fetching data and rendering charts.
+- **Plotly.js**: For creating interactive and responsive charts.
+
+## JavaScript Logic (app.js)
+- **`buildMetadata(sample)`**: This function fetches the metadata for the selected test subject and displays it in the demographic panel.
+- **`buildCharts(sample)`**: This function generates both the bar chart (top 10 OTUs) and the bubble chart (microbial profile) for the selected test subject.
+- **`init()`**: Initializes the dashboard by populating the dropdown menu with the test subject IDs and rendering the default charts and metadata for the first test subject.
+- **`optionChanged(newSample)`**: This event handler updates the charts and metadata whenever a new test subject is selected.
+
+## Conclusion
+This project offers an insightful way to explore the Belly Button Biodiversity dataset through an interactive and user-friendly dashboard. By selecting different test subjects, users can quickly visualize and compare the microbial profiles of various individuals. The combination of bar and bubble charts, along with demographic information, provides a comprehensive view of the data in an engaging format.
+
