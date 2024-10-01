@@ -49,10 +49,9 @@ belly-button-challenge/
 │
 ├── static/
 │   └── js/
-│       └── app.js         # Contains JavaScript logic for fetching data and rendering charts.
+│       └── app.js          # Contains JavaScript logic for fetching data and rendering charts.
 ├── samples.json            # The dataset containing microbial profiles and metadata for test subjects.
-├── index.html              # The main HTML file that structures the dashboard.
-└── README.md               # This file.
+└── index.html              # The main HTML file that structures the dashboard.
 ```
 
 ## Data Source
